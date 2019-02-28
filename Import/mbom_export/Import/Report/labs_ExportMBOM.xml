@@ -1,0 +1,16 @@
+﻿<AML>
+ <Item type="Report" id="A182F9C88D854D21871D3D1122FDC758" action="add">
+  <label xml:lang="en">Export MBOM Report</label>
+  <location>client</location>
+  <method keyed_name="labs_ExportMBOM" type="Method">
+   <Item type="Method" action="get" select="id">
+    <name>labs_ExportMBOM</name>
+   </Item>
+  </method>
+  <report_query><![CDATA[<Item type="{@type}" id="{@id}" action="get" select=""/>]]></report_query>
+  <target>none</target>
+  <type>item</type>
+  <xsl_stylesheet />
+  <name>labs_ExportMBOM</name>
+ </Item>
+</AML>
