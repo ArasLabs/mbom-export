@@ -1,0 +1,662 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:p="urn:ExportBook" xmlns:msxsl="urn:schemas-microsoft-com:xslt" xmlns:usr="urn:the-xml-files:xslt" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head><body><xml><x:excelworkbook><x:excelworksheets><x:excelworksheet><x:name>MBOM Export</x:name><x:worksheetoptions><x:panes></x:panes></x:worksheetoptions></x:excelworksheet></x:excelworksheets></x:excelworkbook></xml>
+
+<style userdata="Global" type="text/css">
+
+                            body {
+                                font-family: helvetica, arial, sans-serif;
+                                font-size: 12px;
+                                background-color: #FFFFFF;
+                            }
+
+                            /*** Table Styles **/
+
+                            thead tr:first-child th {
+                                font-size: 20px;
+                            }
+
+                            thead tr:last-child th {
+                                font-size: 16px;
+                            }
+
+                            th {
+                                text-align: center;
+                                vertical-align: middle;
+                            }
+
+                            tr {
+                                color: #666B85;
+                                font-size: 12px;
+                                font-weight: normal;
+                            }
+
+                            td {
+                                background: #FFFFFF;
+                                text-align: left;
+                                vertical-align: middle;
+                                font-size: 12px;
+                            }
+
+                            #title-row th {
+                                font-weight: bold;
+                            }
+
+                            #date-and-num-row th {
+                                background-color: #FFF;
+                                color: #F26923;
+                                font-size: 16px;
+                                text-align: center;
+                            }
+
+                            #col-name-row {
+                                border-bottom: #3B3838; 1px solid;
+                            }
+
+                            #col-name-row th {
+                                background-color: #FFF;
+                                color: #3B3838;
+                                font-size: 12px;
+                                font-weight: bold;
+                            }
+
+                            .report-detail {
+                                margin-right: 150px;
+                            }
+
+                            .data-row:nth-child(even) td {
+                                background-color: #f2f2f2;
+                            }
+                        
+                    </style>
+<table>
+<thead>
+<tr id="title-row"><th colspan="9">MBOM</th></tr>
+<tr id="col-name-row">
+<th>Level</th>
+<th>Part Number</th>
+<th>Name</th>
+<th>Type</th>
+<th>Quantity</th>
+<th>Operation Number</th>
+<th>Planned</th>
+<th>Part Status</th>
+<th>Reconciliation Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="data-row">
+<td>0</td>
+<td><span>MP0103</span></td>
+<td>MakerBot Replicator with Cover</td>
+<td>Assembly</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>1</td>
+<td><span>P5423</span></td>
+<td>Printer Assembly</td>
+<td>Phantom</td>
+<td>1</td>
+<td>10</td>
+<td>true</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>2</td>
+<td><span>MP2942</span></td>
+<td>Body</td>
+<td>Assembly</td>
+<td>1</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>2</td>
+<td><span>MP2954</span></td>
+<td>Extruder</td>
+<td>Assembly</td>
+<td>1</td>
+<td>10</td>
+<td>true</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>3</td>
+<td><span>P6744</span></td>
+<td>Fan Assembly</td>
+<td>Phantom</td>
+<td>1</td>
+<td>10</td>
+<td>true</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>4</td>
+<td><span>MP2350</span></td>
+<td>Fan 24V 40x40x10 Hi Performance</td>
+<td>Component</td>
+<td>2</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>4</td>
+<td><span>MP1947</span></td>
+<td>M3x45 Socket Cap Bolt</td>
+<td>Component</td>
+<td>6</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>3</td>
+<td><span>P4523</span></td>
+<td>Heat Sink Assembly</td>
+<td>Phantom</td>
+<td>1</td>
+<td>20</td>
+<td>true</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>4</td>
+<td><span>MP1708</span></td>
+<td>MK7 Heatsink</td>
+<td>Component</td>
+<td>2</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>4</td>
+<td><span>MP2685</span></td>
+<td>Spacer Black 16.5mm length 3.2mm ID 7mm OD</td>
+<td>Component</td>
+<td>4</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>3</td>
+<td><span>P23124</span></td>
+<td>Mount Assembly</td>
+<td>Phantom</td>
+<td>1</td>
+<td>30</td>
+<td>true</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>4</td>
+<td><span>MP1701</span></td>
+<td>MK7 Thermal Barrier</td>
+<td>Component</td>
+<td>2</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>4</td>
+<td><span>MP0370-001</span></td>
+<td>M3x5 Socket Cap Bolt</td>
+<td>Component</td>
+<td>4</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td>Overconsumed</td>
+</tr>
+<tr class="data-row">
+<td>4</td>
+<td><span>MP0546</span></td>
+<td>M6 Nut Thin</td>
+<td>Component</td>
+<td>2</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td>Split</td>
+</tr>
+<tr class="data-row">
+<td>4</td>
+<td><span>MP0190</span></td>
+<td>M3 Washer</td>
+<td>Component</td>
+<td>2</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>4</td>
+<td><span>MP1914</span></td>
+<td>Washer .16in ID .25in OD .015in Thk</td>
+<td>Component</td>
+<td>3</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td>Underconsumed</td>
+</tr>
+<tr class="data-row">
+<td>4</td>
+<td><span>MP2590</span></td>
+<td>MK8 Bar Mount</td>
+<td>Component</td>
+<td>1</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>4</td>
+<td><span>MP2685</span></td>
+<td>Spacer Black 16.5mm length 3.2mm ID 7mm OD</td>
+<td>Component</td>
+<td>2</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>4</td>
+<td><span>P7234</span></td>
+<td>Thermal Core</td>
+<td>Phantom</td>
+<td>1</td>
+<td>20</td>
+<td>true</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>5</td>
+<td><span>MP1705</span></td>
+<td>MK7 Thermal Core</td>
+<td>Component</td>
+<td>2</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>5</td>
+<td><span>MP2607</span></td>
+<td>Cartridge Heater 40W 24V Right Angle Exit</td>
+<td>Component</td>
+<td>2</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>5</td>
+<td><span>MP2506</span></td>
+<td>MK8 Nozzle 0.4mm</td>
+<td>Component</td>
+<td>2</td>
+<td>20</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>5</td>
+<td><span>MP0429</span></td>
+<td>Ceramic Tape</td>
+<td>Component</td>
+<td>2</td>
+<td>20</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>3</td>
+<td><span>P8906</span></td>
+<td>Filament Assembly</td>
+<td>Phantom</td>
+<td>1</td>
+<td>40</td>
+<td>true</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>4</td>
+<td><span>MP2966</span></td>
+<td>Wire-Filament Extruder Guide</td>
+<td>Component</td>
+<td>1</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>4</td>
+<td><span>MP2675</span></td>
+<td>Tube Fitting .45in Tube</td>
+<td>Component</td>
+<td>2</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>4</td>
+<td><span>MP0546</span></td>
+<td>M6 Nut Thin</td>
+<td>Component</td>
+<td>2</td>
+<td>20</td>
+<td></td>
+<td></td>
+<td>Split</td>
+</tr>
+<tr class="data-row">
+<td>4</td>
+<td><span>MP1914</span></td>
+<td>Washer .16in ID .25in OD .015in Thk</td>
+<td>Component</td>
+<td>1</td>
+<td>20</td>
+<td></td>
+<td></td>
+<td>Underconsumed</td>
+</tr>
+<tr class="data-row">
+<td>3</td>
+<td><span>P9082</span></td>
+<td>Drive Block</td>
+<td>Phantom</td>
+<td>1</td>
+<td>50</td>
+<td>true</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>4</td>
+<td><span>MP1713</span></td>
+<td>MK7 Filament Drive Block Back</td>
+<td>Component</td>
+<td>2</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>4</td>
+<td><span>MP2759</span></td>
+<td>Nylon Spacer with Flange</td>
+<td>Component</td>
+<td>1</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>4</td>
+<td><span>MP0370-003</span></td>
+<td>M3x10 Socket Cap Bolt</td>
+<td>Component</td>
+<td>1</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td>Underconsumed</td>
+</tr>
+<tr class="data-row">
+<td>4</td>
+<td><span>MP1707</span></td>
+<td>MK7 Plunger</td>
+<td>Component</td>
+<td>2</td>
+<td>20</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>4</td>
+<td><span>MP1709</span></td>
+<td>M3x3mm Set Screw</td>
+<td>Component</td>
+<td>2</td>
+<td>20</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>4</td>
+<td><span>MP1915</span></td>
+<td>O ring .14in ID .246in OD</td>
+<td>Component</td>
+<td>4</td>
+<td>20</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>4</td>
+<td><span>MP1606</span></td>
+<td>Motor Wiring Harness 42inch</td>
+<td>Component</td>
+<td>2</td>
+<td>20</td>
+<td></td>
+<td></td>
+<td>Underconsumed</td>
+</tr>
+<tr class="data-row">
+<td>2</td>
+<td><span>MP2956</span></td>
+<td>Gantry</td>
+<td>Assembly</td>
+<td>1</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>2</td>
+<td><span>MP2968</span></td>
+<td>XY Stage</td>
+<td>Assembly</td>
+<td>1</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>2</td>
+<td><span>MP2943</span></td>
+<td>Build Platform</td>
+<td>Assembly</td>
+<td>1</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>2</td>
+<td><span>MP2952</span></td>
+<td>Electronics</td>
+<td>Assembly</td>
+<td>1</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>2</td>
+<td><span>MP2967</span></td>
+<td>Wiring</td>
+<td>Assembly</td>
+<td>1</td>
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>1</td>
+<td><span>MP2962</span></td>
+<td>Side Clip Short</td>
+<td>Component</td>
+<td>10</td>
+<td>20</td>
+<td></td>
+<td></td>
+<td>Overconsumed</td>
+</tr>
+<tr class="data-row">
+<td>1</td>
+<td><span>MP2937</span></td>
+<td>Acrylic Side Cover</td>
+<td>Component</td>
+<td>2</td>
+<td>20</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>1</td>
+<td><span>MP2955</span></td>
+<td>Front Window Panel</td>
+<td>Component</td>
+<td>1</td>
+<td>30</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>1</td>
+<td><span>MP0370-004</span></td>
+<td>M3x16 Socket Cap Bolt</td>
+<td>Component</td>
+<td>6</td>
+<td>30</td>
+<td></td>
+<td></td>
+<td>Underconsumed</td>
+</tr>
+<tr class="data-row">
+<td>1</td>
+<td><span>MP2295</span></td>
+<td>M3 Square Nut</td>
+<td>Component</td>
+<td>6</td>
+<td>30</td>
+<td></td>
+<td></td>
+<td>Underconsumed</td>
+</tr>
+<tr class="data-row">
+<td>1</td>
+<td><span>MP2951</span></td>
+<td>Cover</td>
+<td>Assembly</td>
+<td>1</td>
+<td>40</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>1</td>
+<td><span>MP0370-004</span></td>
+<td>M3x16 Socket Cap Bolt</td>
+<td>Component</td>
+<td>12</td>
+<td>40</td>
+<td></td>
+<td></td>
+<td>Underconsumed</td>
+</tr>
+<tr class="data-row">
+<td>1</td>
+<td><span>MP2295</span></td>
+<td>M3 Square Nut</td>
+<td>Component</td>
+<td>12</td>
+<td>40</td>
+<td></td>
+<td></td>
+<td>Underconsumed</td>
+</tr>
+<tr class="data-row">
+<td>1</td>
+<td><span>MP2935</span></td>
+<td>Filament Spool Holder</td>
+<td>Component</td>
+<td>2</td>
+<td>50</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>1</td>
+<td><span>MP2938</span></td>
+<td>Additional Parts</td>
+<td>Assembly</td>
+<td>1</td>
+<td>1000000015</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="data-row">
+<td>1</td>
+<td><span>MP2948</span></td>
+<td>Cover Hardware</td>
+<td>Assembly</td>
+<td>1</td>
+<td>1000000015</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</body></html>
