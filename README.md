@@ -43,6 +43,18 @@ Project | Aras
 
 You are now ready to login to Aras and start exporting.
 
+#### Optional: Use Report instead of an Action
+
+By default, this project adds an Action to the mpp_ProcessPlan ItemType called Export MBOM. If your users would rather access this feature from the Reports menu instead of the Actions menu, you can remove the Export MBOM Action from the mpp_ProcessPlan ItemType and instead attach the included labs_ExportMBOM Report.
+
+1. Login to Innovator as admin.
+2. Open the mpp_ProcessPlan ItemType for editing.
+3. Remove the labs_ExportMBOM Action from the Actions tab. 
+4. Add the labs_ExportMBOM Report to the Reports tab.
+5. Save, unlock, and close the mpp_ProcessPlan ItemType.
+
+The usage steps documented below still apply. Just access the Export MBOM feature from the Reports menu instead of the Actions menu where applicable.
+
 ## Usage
 
 >Note: The steps below for both use cases start from the Process Plan item window, but the Export MBOM action can also be run from the main grid. You don't have to open the Process Plan or MBOM view to use the Export MBOM action.
