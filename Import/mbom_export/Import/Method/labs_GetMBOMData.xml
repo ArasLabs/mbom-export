@@ -1,0 +1,190 @@
+﻿<AML>
+ <Item type="Method" id="61AAA34A7AD3421A8C44A4990DFF1B98" action="add">
+  <execution_allowed_to keyed_name="Administrators" type="Identity">2618D6F5A90949BAA7E920D1B04C7EE1</execution_allowed_to>
+  <method_code><![CDATA[/*  This method requires three inputs:
+    - process_plan_id
+    - location
+    - part
+*/
+    Innovator inn = this.getInnovator();
+
+    // get input
+    string pp_id = this.getProperty("process_plan_id","");
+    string location_kn = this.getProperty("location","");
+    string part_kn = this.getProperty("part","");
+    
+    // validate input
+    if (pp_id == "") {
+        return inn.newError("Missing parameter in labs_GetMBOMData: process_plan_id is undefined.");
+    }
+    
+    if (location_kn == "") {
+        return inn.newError("Missing parameter in labs_GetMBOMData: location is undefined.");
+    }
+    
+    if (part_kn == "") {
+        return inn.newError("Missing parameter in labs_GetMBOMData: part is undefined.");
+    }
+    
+    // get part
+    Item part = this.newItem("Part","get");
+    part.setProperty("keyed_name", part_kn);
+    part = part.apply();
+    
+    if (part.isError()) {
+        return inn.newError("Part: " + part + ". Error: " + part.getErrorString());
+    }
+    
+    // get location
+    Item location = this.newItem("mpp_Location", "get");
+    location.setProperty("name", location_kn);
+    location = location.apply();
+    
+    if (location.isError()) {
+        return inn.newError("Location: " + location_kn + ". Error: " + location.getErrorString());
+    }
+    
+    string location_id = location.getID();
+    
+    // set up AML for mpp_GetBomTreeGrid
+    Item result = part;
+    result.setAction("mpp_GetBomTreeGrid");
+    result.setProperty("processplan_id", pp_id);
+    result.setProperty("location_id", location_id);
+    result.setProperty("is_phantom", "0");
+    result.setPropertyAttribute("mbom_expanded_op_cons_ids", "is_null", "1");
+    
+    System.IO.File.WriteAllText(@"C:\Temp\mbom_aml.xml", result.ToString());
+    
+    // get BomTreeGrid result
+    result = result.apply();
+    
+    string mbom = result.getProperty("mbomDataJson","mbomDataJson property not found or null");
+    MbomObject m = JsonConvert.DeserializeObject<MbomObject>(mbom);
+    
+    // get mbom data in pseudo-item format that can be used by report
+    Item res = m.ToItem(inn);
+    return res;
+}
+
+public class MbomObject
+{
+    public string uniqueId { get; set; }
+    public string expanded { get; set; }
+    public string icon { get; set; }
+    public string expandedIcon { get; set; }
+    public UserData userdata { get; set; }
+    public string[] fields { get; set; }
+    public MbomObject[] children { get; set; }
+
+    public string ToString(){
+        //string res = "[" + uniqueId + ", " + icon + "]\n";
+        string res = string.Join(",",fields);
+        return res;
+    }
+    
+    public Item ToItem(Innovator inn)
+    {
+        Item mbom = inn.newItem("Part");
+        mbom.setID(userdata.id);
+        mbom.setProperty("item_number",fields[0]);
+        mbom.setProperty("name",fields[2]);
+        mbom.setProperty("type",fields[3]);
+        mbom.setProperty("quantity",fields[4]);
+        mbom.setProperty("operation_number",fields[5]);
+        mbom.setProperty("planned",fields[6]);
+        mbom.setProperty("part_status",fields[7]);
+        
+        string[] reconciliation = GetStatus(fields[8]);
+        
+        mbom.setProperty("reconciliation_status",reconciliation[0]);
+        mbom.setProperty("ebom_quantity",reconciliation[1]);
+        mbom.setProperty("mbom_quantity",reconciliation[2]);
+ 
+        mbom.ToString();
+        
+        if (children == null)
+            return mbom;
+        
+        for (int i=0; i < children.Length; i++)
+        {
+            Item child = children[i].ToItem(inn);
+            Item rel = inn.newItem("Part BOM");
+            rel.setRelatedItem(child);
+            mbom.addRelationship(rel);
+        }
+        
+        return mbom;
+    }
+    
+    // return [status, ebom quantity, mbom quantity]
+    public static string[] GetStatus(string s)
+    {
+        string[] res = new string[] {"", "", ""};
+        
+        if (s == "" || s == null)
+            return res;
+        
+        string status = "";
+        string ebom = "";
+        string mbom = "";
+        
+        if (s.IndexOf("Underconsumed") >= 0)
+        {
+            // underconsumed
+            status = "Underconsumed";
+        } 
+        else if (s.IndexOf("Overconsumed") >= 0)
+        {
+            // overconsumed
+            status = "Overconsumed";
+        }
+        else if (s.IndexOf("Split") >= 0)
+        {
+            // split
+            status = "Split";
+        }
+        
+        int e = s.IndexOf("EBOM Quantity: ");
+        int m = s.IndexOf("MBOM Quantity: ");
+        
+        if (e >= 0 && m >= e)
+        {
+            ebom = s.Substring(e+15, (m-e-15));
+            mbom = s.Substring(m+15, (s.LastIndexOf("'")-m-15));
+        }
+        
+        res[0] = status;
+        res[1] = ebom.Trim();
+        res[2] = mbom.Trim();
+        
+        return res;
+    }
+}
+
+public class UserData
+{
+    public string id { get; set; }
+    public string cpid { get; set; }
+    public string pid { get; set; }
+    public string ocid { get; set; }
+    public string oid { get; set; }
+    public string eonly { get; set; }
+    public string comp { get; set; }
+    public string bad { get; set; }
+    public string buy { get; set; }
+    public string gen { get; set; }
+    public string rev { get; set; }
+    public string conf { get; set; }
+    public string level { get; set; }
+    public string ngen { get; set; }
+
+    public string ToString(){
+        string res = "userdata: [" + id + "]";
+        return res;
+    }
+]]></method_code>
+  <method_type>C#</method_type>
+  <name>labs_GetMBOMData</name>
+ </Item>
+</AML>

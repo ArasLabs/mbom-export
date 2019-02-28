@@ -1,0 +1,96 @@
+﻿<AML>
+ <Item type="Method" id="02BC3E1022C1408581F8D4DE8E45AC67" action="add">
+  <execution_allowed_to keyed_name="Administrators" type="Identity">2618D6F5A90949BAA7E920D1B04C7EE1</execution_allowed_to>
+  <method_code><![CDATA[// we need to populate the lists of locations, produced parts, and export types
+// first, get the relationships for this item
+var params = window.parent.dialogArguments;
+var inn = aras.newIOMInnovator();
+
+var process_plan = inn.newItem("mpp_ProcessPlan","get");
+process_plan.setID(params.process_plan_id);
+process_plan.createRelationship("mpp_ProcessPlanLocation", "get");
+process_plan.createRelationship("mpp_ProcessPlanProducedPart", "get");
+process_plan = process_plan.apply();
+
+var locations = process_plan.getItemsByXPath("//Item[@type='mpp_Location']");
+var parts = process_plan.getItemsByXPath("//Item[@type='Part']");
+
+if (locations.getItemCount() < 1) {
+    return alert("This process plan has no locations.");
+}
+
+if (parts.getItemCount() < 1) {
+    return alert("This process plan has no produced parts.");
+}
+
+// populate location list
+var location_field = getFieldComponentByName("location");
+
+var listOfValues = [{
+    label: '',
+    value: ''
+}];
+
+// Add an entry to our list for each value
+for (var i = 0; i < locations.getItemCount(); i++) {
+    var itm = locations.getItemByIndex(i);
+    listOfValues.push({
+        label: itm.getProperty("name"),
+        value: itm.getProperty("id")
+    });
+}
+
+// Pass this list into our dropdown field
+location_field.component.setState({
+    list: listOfValues
+});
+
+// populate part list
+var part_field = getFieldComponentByName("part");
+
+listOfValues = [{
+    label: '',
+    value: ''
+}];
+
+// Add an entry to our list for each value
+for (var i = 0; i < parts.getItemCount(); i++) {
+    var itm = parts.getItemByIndex(i);
+    listOfValues.push({
+        label: itm.getProperty("item_number"),
+        value: itm.getProperty("id")
+    });
+}
+
+// Pass this list into our dropdown field
+part_field.component.setState({
+    list: listOfValues
+});
+
+// populate type list
+var type_field = getFieldComponentByName("export_type");
+
+listOfValues = [{
+    label: '',
+    value: ''
+},
+{
+    label: "Excel",
+    value: "Excel"
+},
+{
+    label: "PDF",
+    value: "PDF"
+}];
+
+type_field.component.setState({
+    list: listOfValues
+});
+
+// set label with plan keyed name
+var label_field = getFieldByName("title_2");
+label_field.getElementsByTagName("span")[0].innerHTML = process_plan.getProperty("keyed_name","");]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>labs_LoadExportOptions</name>
+ </Item>
+</AML>

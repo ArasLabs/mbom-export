@@ -1,0 +1,30 @@
+﻿<AML>
+ <Item type="Method" id="620F1C154F1A4E2F9647AEC385FCDA39" action="add">
+  <execution_allowed_to keyed_name="Administrators" type="Identity">2618D6F5A90949BAA7E920D1B04C7EE1</execution_allowed_to>
+  <method_code><![CDATA[var params = window.parent.dialogArguments;
+
+// get location field
+var wrapper1 = getFieldByName("location");
+var location_field = wrapper1.getElementsByTagName("input")[0];
+
+// get part field
+var wrapper2 = getFieldByName("part");
+var part = wrapper2.getElementsByTagName("input")[0];
+
+// get export type
+var wrapper3 = getFieldByName("export_type");
+var export_type = wrapper3.getElementsByTagName("input")[0];
+
+// return entered values
+var retVal = {};
+retVal["process_plan_id"] = params.process_plan_id;
+retVal["location"] = location_field.value;
+retVal["part"] = part.value;
+retVal["export_type"] = export_type.value;
+
+parent.returnValue = retVal; 
+parent.close();]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>labs_SubmitExportSettings</name>
+ </Item>
+</AML>

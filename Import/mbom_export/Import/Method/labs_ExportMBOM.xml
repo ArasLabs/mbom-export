@@ -1,0 +1,108 @@
+﻿<AML>
+ <Item type="Method" id="223663B0EEDA4D689F5BC052C7ADD122" action="add">
+  <execution_allowed_to keyed_name="Administrators" type="Identity">2618D6F5A90949BAA7E920D1B04C7EE1</execution_allowed_to>
+  <method_code><![CDATA[// Call a custom form in a modal dialog
+// Perform some action based on the values returned from dialog
+var inn = aras.newIOMInnovator();
+var topWnd = aras.getMostTopWindowWithAras(window);
+topWnd = topWnd.main || topWnd;
+
+// get form
+var formName = "labs_ExportMBOM";
+var fetchForm = this.getInnovator().newItem("Form","get");
+fetchForm.setProperty("name",formName);
+fetchForm = fetchForm.apply("get"); 
+
+// check form for error
+if (fetchForm.isError()) {
+    return alert("Can't find a form called " + formName);
+}
+    
+// get form params
+var params = {
+    title: 'Export MBOM Settings', 
+    formId: fetchForm.getID(),       // put your form's id here
+    aras: aras,
+    dialogWidth: 240,                // set width int
+    dialogHeight: 320,               // set height int
+    content: 'ShowFormAsADialog.html',
+    process_plan_id: this.getID()
+};
+
+// call form in dialog
+var then = aras.getMainWindow().main.ArasModules.Dialog.show("iframe", params).promise.then(function(res) {
+    // get parameters
+    var process_plan_id = res["process_plan_id"];
+    var location = res["location"];
+    var part = res["part"];
+    var export_type = res["export_type"];
+
+    if (!location) {
+        return alert("Location not selected");
+    }
+    
+    if (!part) {
+        return alert("Produced part not selected.");
+    }
+    
+    var process_plan = inn.getItemById("mpp_ProcessPlan",process_plan_id);
+    var plan_name = process_plan.getProperty("keyed_name");
+    
+    var params = "<process_plan_id>" + process_plan_id + "</process_plan_id>";
+    params += "<location>" + location + "</location>";
+    params += "<part>" + part + "</part>";
+    
+    // get MBOM data
+    var mbom = inn.applyMethod("labs_GetMBOMData", params);
+    
+    if (mbom.isError()) {
+        return alert("mbom is error: " + mbom.getErrorString());
+    }
+    
+    mbom.setAttribute("plan_number",plan_name);
+    mbom.setAttribute("location_name",location);
+    mbom.setAttribute("part_number",part);
+    
+    var report, style, html = '';
+    
+    // open new window and display
+    if (export_type == "PDF" || export_type == "HTML") {
+        report = inn.getItemByKeyedName('Report','labs_MBOMHTML');
+        style = report.getProperty('xsl_stylesheet');
+        html = mbom.applyStylesheet(style,'text');
+
+        var newWin = window.open('','MBOM Results');
+        newWin.document.write(html);
+        return;
+    }
+    
+    if (export_type == "Excel") {
+        
+        report = inn.getItemByKeyedName('Report','labs_MBOMExcel');
+        style = report.getProperty('xsl_stylesheet');
+        html = mbom.applyStylesheet(style,'text');
+        
+        var blob = new Blob([html], {type: "application/excel"});
+    	if ('msSaveBlob' in window.navigator) {
+    		window.navigator.msSaveBlob(blob, plan_name + '_MBOM_Export.xls');
+    		return;
+    	}
+    
+    	var link = document.createElement('a');
+    	link.href = URL.createObjectURL(blob);
+    	link.download = plan_name + '_MBOM_Export.xls';
+    	link.setAttribute('type',  "application/excel");
+    
+    	var e = document.createEvent('MouseEvents');
+    	e.initEvent('click' ,true ,true);
+    	link.dispatchEvent(e);
+    }
+
+});
+
+return then;
+]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>labs_ExportMBOM</name>
+ </Item>
+</AML>

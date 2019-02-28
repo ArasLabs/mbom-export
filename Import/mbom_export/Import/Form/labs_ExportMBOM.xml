@@ -1,0 +1,161 @@
+﻿<AML>
+ <Item type="Form" id="CE5B7FDB921B49F493D1BEFA934FB04A" action="add">
+  <category_form>0</category_form>
+  <height>400</height>
+  <stylesheet><![CDATA[../styles/default.css]]></stylesheet>
+  <width>400</width>
+  <name>labs_ExportMBOM</name>
+  <Relationships>
+   <Item type="Body" id="4BE42552B437419FBA868CDA0116B5C8" action="add">
+    <sort_order>128</sort_order>
+    <source_id keyed_name="labs_ExportMBOM" type="Form">CE5B7FDB921B49F493D1BEFA934FB04A</source_id>
+    <Relationships>
+     <Item type="Field" id="677CC54C7D1641BC8DD6F74111F4BA43" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>button</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">Export MBOM</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>896</sort_order>
+      <source_id keyed_name="4BE42552B437419FBA868CDA0116B5C8" type="Body">4BE42552B437419FBA868CDA0116B5C8</source_id>
+      <tab_stop>1</tab_stop>
+      <x>60</x>
+      <y>200</y>
+      <name>export_btn</name>
+      <Relationships>
+       <Item type="Field Event" id="D75BE5BFD39D4B90AB42B22C9E641446" action="add">
+        <field_event>onclick</field_event>
+        <related_id keyed_name="labs_SubmitExportSettings" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>labs_SubmitExportSettings</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="export_btn" type="Field">677CC54C7D1641BC8DD6F74111F4BA43</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="F13A8BCE3EFD479992017C36492127B9" action="add">
+      <border_width>0</border_width>
+      <display_length>180</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>dropdown</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">Export Type</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>512</sort_order>
+      <source_id keyed_name="4BE42552B437419FBA868CDA0116B5C8" type="Body">4BE42552B437419FBA868CDA0116B5C8</source_id>
+      <tab_stop>1</tab_stop>
+      <x>20</x>
+      <y>140</y>
+      <name>export_type</name>
+     </Item>
+     <Item type="Field" id="841E0B995AF241B48DFBE5485B947D90" action="add">
+      <border_width>0</border_width>
+      <display_length>180</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>dropdown</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">Location</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>384</sort_order>
+      <source_id keyed_name="4BE42552B437419FBA868CDA0116B5C8" type="Body">4BE42552B437419FBA868CDA0116B5C8</source_id>
+      <tab_stop>1</tab_stop>
+      <x>20</x>
+      <y>50</y>
+      <name>location</name>
+     </Item>
+     <Item type="Field" id="D50A4193F58249AF8EDE084C61D2C16F" action="add">
+      <border_width>0</border_width>
+      <display_length>180</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>dropdown</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">Produced Part</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>128</sort_order>
+      <source_id keyed_name="4BE42552B437419FBA868CDA0116B5C8" type="Body">4BE42552B437419FBA868CDA0116B5C8</source_id>
+      <tab_stop>1</tab_stop>
+      <x>20</x>
+      <y>95</y>
+      <name>part</name>
+     </Item>
+     <Item type="Field" id="451C84FB5DC04E7A92B3444B59672E3E" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>label</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>12pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">Export MBOM: </label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>640</sort_order>
+      <source_id keyed_name="4BE42552B437419FBA868CDA0116B5C8" type="Body">4BE42552B437419FBA868CDA0116B5C8</source_id>
+      <tab_stop>1</tab_stop>
+      <x>20</x>
+      <y>20</y>
+      <name>title_1</name>
+     </Item>
+     <Item type="Field" id="68D5BFCCA61347B9BAA56110B266E53E" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>label</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>12pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>768</sort_order>
+      <source_id keyed_name="4BE42552B437419FBA868CDA0116B5C8" type="Body">4BE42552B437419FBA868CDA0116B5C8</source_id>
+      <tab_stop>1</tab_stop>
+      <x>140</x>
+      <y>20</y>
+      <name>title_2</name>
+     </Item>
+    </Relationships>
+   </Item>
+   <Item type="Form Event" id="042DF191717A421BBAE196B35DB69714" action="add">
+    <form_event>onload</form_event>
+    <related_id keyed_name="labs_LoadExportOptions" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>labs_LoadExportOptions</name>
+     </Item>
+    </related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="labs_ExportMBOM" type="Form">CE5B7FDB921B49F493D1BEFA934FB04A</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

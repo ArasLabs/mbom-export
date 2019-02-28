@@ -1,0 +1,165 @@
+﻿<AML>
+ <Item type="Report" id="1E534DA5F378429797CCCA98F528CA4B" action="add">
+  <location>client</location>
+  <report_query><![CDATA[<Item type="{@type}" id="{@id}" action="get" select=""/>]]></report_query>
+  <target>none</target>
+  <type>item</type>
+  <xsl_stylesheet><![CDATA[<xsl:stylesheet 
+    version="1.0" 
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+    xmlns:p="urn:ExportBook" 
+    xmlns:msxsl="urn:schemas-microsoft-com:xslt" 
+    xmlns:usr="urn:the-xml-files:xslt" 
+    xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">
+	    <xsl:template match="/">
+		        <html xmlns:x="urn:schemas-microsoft-com:office:excel">
+			        <head>
+                        <xml>
+                            <x:ExcelWorkbook>
+                                <x:ExcelWorksheets>
+                                    <x:ExcelWorksheet>
+                                        <x:Name>MBOM Export</x:Name>
+                                        <x:WorksheetOptions>
+                                            <x:Panes></x:Panes>
+                                        </x:WorksheetOptions>
+                                    </x:ExcelWorksheet>
+                                </x:ExcelWorksheets>
+                            </x:ExcelWorkbook>
+                        </xml>
+                    </head>
+                    <style userData="Global" type="text/css">
+
+                            body {
+                                font-family: helvetica, arial, sans-serif;
+                                font-size: 12px;
+                                background-color: #FFFFFF;
+                            }
+
+                            /*** Table Styles **/
+
+                            thead tr:first-child th {
+                                font-size: 20px;
+                            }
+
+                            thead tr:last-child th {
+                                font-size: 16px;
+                            }
+
+                            th {
+                                text-align: center;
+                                vertical-align: middle;
+                            }
+
+                            tr {
+                                color: #666B85;
+                                font-size: 12px;
+                                font-weight: normal;
+                            }
+
+                            td {
+                                background: #FFFFFF;
+                                text-align: left;
+                                vertical-align: middle;
+                                font-size: 12px;
+                            }
+
+                            #title-row th {
+                                font-weight: bold;
+                            }
+
+                            #date-and-num-row th {
+                                background-color: #FFF;
+                                color: #F26923;
+                                font-size: 16px;
+                                text-align: center;
+                            }
+
+                            #col-name-row {
+                                border-bottom: #3B3838; 1px solid;
+                            }
+
+                            #col-name-row th {
+                                background-color: #FFF;
+                                color: #3B3838;
+                                font-size: 12px;
+                                font-weight: bold;
+                            }
+
+                            .report-detail {
+                                margin-right: 150px;
+                            }
+
+                            .data-row:nth-child(even) td {
+                                background-color: #f2f2f2;
+                            }
+                        
+                    </style>    
+                    <body>
+                        <table>
+                            <thead>
+                                <tr id="title-row">
+                                    <th colspan="9">MBOM</th>
+                                </tr>
+                                <!-- <tr id="date-and-num-row">
+                                    <th colspan="8">
+                                        <span class="report-detail">Process Plan: PP010</span>
+                                        <span class="report-detail">Location: Detroit</span>
+                                        <span>Produced Part: MP0103</span>
+                                    </th>
+                                </tr> -->
+                                <tr id="col-name-row">
+                                    <th>Level</th>
+                                    <th>Part Number</th>
+                                    <th>Name</th>
+                                    <th>Type</th>
+                                    <th>Quantity</th>
+                                    <th>Operation Number</th>
+                                    <th>Planned</th>
+                                    <th>Part Status</th>
+                                    <th>Reconciliation Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <xsl:apply-templates select="//Item[@type='Part']"/>
+                            </tbody>
+                        </table>
+                    </body>
+		        </html>
+	    </xsl:template>
+	    <xsl:template match="Item[@type='Part']">
+		        <tr class="data-row">
+                        <td>
+                            <xsl:value-of select="count(ancestor::*) div 4" />
+                        </td>
+			            <td>
+				                <span>
+					                    <xsl:value-of select="item_number"/>
+				                </span>
+			            </td>
+			            <td>
+                            <xsl:value-of select="name"/>
+                        </td>
+                                    <td>
+                            <xsl:value-of select="type"/>
+                        </td>
+                                    <td>
+                            <xsl:value-of select="quantity"/>
+                        </td>
+                                    <td>
+                            <xsl:value-of select="operation_number"/>
+                        </td>
+                                    <td>
+                            <xsl:if test="planned = 'true'">true</xsl:if>
+                        </td>
+                                    <td>
+                            <xsl:value-of select="part_status"/>
+                        </td>
+                                    <td>
+                            <xsl:value-of select="reconciliation_status"/>
+                        </td>
+		        </tr>
+	    </xsl:template>
+</xsl:stylesheet>]]></xsl_stylesheet>
+  <name>labs_MBOMExcel</name>
+ </Item>
+</AML>

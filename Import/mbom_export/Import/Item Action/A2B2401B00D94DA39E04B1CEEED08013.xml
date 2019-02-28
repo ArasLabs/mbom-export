@@ -1,0 +1,21 @@
+﻿<AML>
+ <Item type="Item Action" id="A2B2401B00D94DA39E04B1CEEED08013" action="add">
+  <related_id keyed_name="labs_ExportMBOM" type="Action">
+   <Item type="Action" id="55E0E74F994040C590DD340CFD0A541E" action="add">
+    <item_query>&lt;Item type="{@type}" id="{@id}" levels= "1" action="get" /&gt;</item_query>
+    <label xml:lang="en">Export MBOM</label>
+    <location>client</location>
+    <method keyed_name="labs_ExportMBOM" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>labs_ExportMBOM</name>
+     </Item>
+    </method>
+    <target>none</target>
+    <type>item</type>
+    <name>labs_ExportMBOM</name>
+   </Item>
+  </related_id>
+  <sort_order>128</sort_order>
+  <source_id keyed_name="mpp_ProcessPlan" type="ItemType" name="mpp_ProcessPlan">4E030A4723224002B3E94F40F01AC1DE</source_id>
+ </Item>
+</AML>

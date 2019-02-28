@@ -1,0 +1,15 @@
+﻿<AML>
+ <Item type="Action" id="55E0E74F994040C590DD340CFD0A541E" action="add">
+  <item_query>&lt;Item type="{@type}" id="{@id}" levels= "1" action="get" /&gt;</item_query>
+  <label xml:lang="en">Export MBOM</label>
+  <location>client</location>
+  <method keyed_name="labs_ExportMBOM" type="Method">
+   <Item type="Method" action="get" select="id">
+    <name>labs_ExportMBOM</name>
+   </Item>
+  </method>
+  <target>none</target>
+  <type>item</type>
+  <name>labs_ExportMBOM</name>
+ </Item>
+</AML>
