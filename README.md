@@ -76,7 +76,7 @@ You are now ready to login to Aras and start exporting.
 5. In the browser prompt that appears, confirm whether you want to open or save the Excel file.
 6. Open the file for viewing or editing as needed.
 
-[Click here](./Examples/PP010_MBOM_Export.pdf) to see an example of a MBOM exported to PDF.
+[Click here](./Examples/PP010_MBOM_Export.xls) to see an example of a MBOM exported to PDF.
 
 >Note: When you open the Excel file, you may receive a warning about the file type. This is a known issue but does not affect the usability of the file. As a workaround, run Save As on the file to avoid seeing the message next time you open workbook.
 
