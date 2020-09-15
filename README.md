@@ -6,6 +6,7 @@ This project adds an export action to the Process Plan item provided by the Aras
 
 Release | Notes
 --------|--------
+[v1.2.0](https://github.com/ArasLabs/mbom-export/releases/tag/v1.2.0) | Updated Newtonsoft reference to work with recent service packs. 
 [v1.1.0](https://github.com/ArasLabs/mbom-export/releases/tag/v1.1.0) | Includes an optional report to allow users to export the MBOM from the Reports menu instead of the actions menu. Requested in [Issue #6](https://github.com/ArasLabs/mbom-export/issues/6).
 [v1.0.0](https://github.com/ArasLabs/mbom-export/releases/tag/v1.0.0) | First release. Tested on Aras 11 SP15 with MPP 11.0 R3 installed. 
 
@@ -13,6 +14,7 @@ Release | Notes
 
 Project | Aras
 --------|------
+[v1.2.0](https://github.com/ArasLabs/mbom-export/releases/tag/v1.2.0) | 12.0 SP9 w/ MPP 12.0 R1
 [v1.1.0](https://github.com/ArasLabs/mbom-export/releases/tag/v1.1.0) | 11.0 SP15 w/ MPP 11.0 R3
 [v1.0.0](https://github.com/ArasLabs/mbom-export/releases/tag/v1.0.0) | 11.0 SP15 w/ MPP 11.0 R3
 

@@ -60,7 +60,7 @@
     result = result.apply();
     
     string mbom = result.getProperty("mbomDataJson","mbomDataJson property not found or null");
-    MbomObject m = JsonConvert.DeserializeObject<MbomObject>(mbom);
+    MbomObject m = Newtonsoft.Json.JsonConvert.DeserializeObject<MbomObject>(mbom);
     
     // get mbom data in pseudo-item format that can be used by report
     Item res = m.ToItem(inn);
